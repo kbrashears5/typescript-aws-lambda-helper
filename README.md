@@ -5,7 +5,7 @@
 <b>Typescript helper functions for AWS Lambda service</b>
     
 [![Build Status](https://dev.azure.com/kbrashears5/github/_apis/build/status/kbrashears5.typescript-aws-lambda-helper?branchName=master)](https://dev.azure.com/kbrashears5/github/_build/latest?definitionId=16&branchName=master)
-[![Telambda](https://img.shields.io/azure-devops/tests/kbrashears5/github/16)](https://img.shields.io/azure-devops/tests/kbrashears5/github/16)
+[![Tests](https://img.shields.io/azure-devops/tests/kbrashears5/github/16)](https://img.shields.io/azure-devops/tests/kbrashears5/github/16)
 [![Code Coverage](https://img.shields.io/azure-devops/coverage/kbrashears5/github/16)](https://img.shields.io/azure-devops/coverage/kbrashears5/github/16)
 
 [![NPM Version](https://img.shields.io/npm/v/typescript-aws-lambda-helper)](https://img.shields.io/npm/v/typescript-aws-lambda-helper)
