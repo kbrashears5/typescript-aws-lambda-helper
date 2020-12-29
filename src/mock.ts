@@ -1,7 +1,5 @@
 import { BaseMock } from 'typescript-helper-functions';
-
-// tslint:disable-next-line: no-var-requires
-const AWS = require('aws-sdk');
+import * as Lambda from '@aws-sdk/client-lambda';
 
 /**
  * Lambda Mock class
@@ -9,24 +7,24 @@ const AWS = require('aws-sdk');
 export class LambdaMock extends BaseMock {
 
     /**
-     * Mocks an AWS.Lambda.EventSourceMappingConfiguration response
+     * Mocks an Lambda.EventSourceMappingConfiguration response
      */
-    public EventSourceMappingConfiguration: AWS.Lambda.EventSourceMappingConfiguration = {};
+    public EventSourceMappingConfiguration: Lambda.EventSourceMappingConfiguration = {};
 
     /**
-     * Mocks an AWS.Lambda.InvocationResponse response
+     * Mocks an Lambda.InvocationResponse response
      */
-    public InvocationResponse: AWS.Lambda.InvocationResponse = {};
+    public InvocationResponse: Lambda.InvocationResponse = {};
 
     /**
-     * Mocks an AWS.Lambda.InvokeAsyncResponse response
+     * Mocks an Lambda.InvokeAsyncResponse response
      */
-    public InvokeAsyncResponse: AWS.Lambda.InvokeAsyncResponse = {};
+    public InvokeAsyncResponse: Lambda.InvokeAsyncResponse = {};
 
     /**
-     * Mocks an AWS.Lambda.ListEventSourceMappingsResponse response
+     * Mocks an Lambda.ListEventSourceMappingsResponse response
      */
-    public ListEventSourceMappingsResponse: AWS.Lambda.ListEventSourceMappingsResponse = {};
+    public ListEventSourceMappingsResponse: Lambda.ListEventSourceMappingsResponse = {};
 
     /**
      * Create the Lambda mock
@@ -41,7 +39,7 @@ export class LambdaMock extends BaseMock {
                 promise: jest.fn().mockImplementation(() => {
                     return returnError ?
                         Promise.reject(rejectResponse) :
-                        Promise.resolve<AWS.Lambda.InvocationResponse>(this.InvocationResponse);
+                        Promise.resolve<Lambda.InvocationResponse>(this.InvocationResponse);
                 }),
             },
             // invoke async response
@@ -49,7 +47,7 @@ export class LambdaMock extends BaseMock {
                 promise: jest.fn().mockImplementation(() => {
                     return returnError ?
                         Promise.reject(rejectResponse) :
-                        Promise.resolve<AWS.Lambda.InvokeAsyncResponse>(this.InvokeAsyncResponse);
+                        Promise.resolve<Lambda.InvokeAsyncResponse>(this.InvokeAsyncResponse);
                 }),
             },
             // get event source mapping response
@@ -57,7 +55,7 @@ export class LambdaMock extends BaseMock {
                 promise: jest.fn().mockImplementation(() => {
                     return returnError ?
                         Promise.reject(rejectResponse) :
-                        Promise.resolve<AWS.Lambda.EventSourceMappingConfiguration>(this.EventSourceMappingConfiguration);
+                        Promise.resolve<Lambda.EventSourceMappingConfiguration>(this.EventSourceMappingConfiguration);
                 }),
             },
              // list event source mappings response
@@ -65,7 +63,7 @@ export class LambdaMock extends BaseMock {
                 promise: jest.fn().mockImplementation(() => {
                     return returnError ?
                         Promise.reject(rejectResponse) :
-                        Promise.resolve<AWS.Lambda.ListEventSourceMappingsResponse>(this.ListEventSourceMappingsResponse);
+                        Promise.resolve<Lambda.ListEventSourceMappingsResponse>(this.ListEventSourceMappingsResponse);
                 }),
             },
             // update event source mapping response
@@ -73,13 +71,15 @@ export class LambdaMock extends BaseMock {
                 promise: jest.fn().mockImplementation(() => {
                     return returnError ?
                         Promise.reject(rejectResponse) :
-                        Promise.resolve<AWS.Lambda.EventSourceMappingConfiguration>(this.EventSourceMappingConfiguration);
+                        Promise.resolve<Lambda.EventSourceMappingConfiguration>(this.EventSourceMappingConfiguration);
                 }),
             },
         };
 
+        const options = {} as Lambda.LambdaClientConfig;
+
         // create the functions
-        let functions = new AWS.Lambda();
+        let functions = new Lambda.Lambda(options);
         functions = {
             invoke: () => awsResponses.invoke,
             invokeAsync: () => awsResponses.invokeAsync,

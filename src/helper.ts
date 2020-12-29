@@ -1,7 +1,8 @@
-import * as AWS from 'aws-sdk';
+import * as Lambda from '@aws-sdk/client-lambda';
 import { ILogger } from 'typescript-ilogger';
 import { BaseClass } from 'typescript-helper-functions';
 import { ILambdaHelper } from './interface';
+import { Readable } from 'stream';
 
 /**
  * Lambda Helper
@@ -11,7 +12,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
     /**
      * AWS Repository for Lambda
      */
-    public Repository: AWS.Lambda;
+    public Repository: Lambda.Lambda;
 
     /**
      * Default batch size for Dynamo Event Source Mapping
@@ -31,15 +32,16 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
     /**
      * Initializes new instance of LambdaHelper
      * @param logger {ILogger} Injected logger
-     * @param repository {AWS.Lambda} Injected Repository. A new repository will be created if not supplied
-     * @param options {AWS.Lambda.ClientConfiguration} Injected configuration if a Repository is supplied
+     * @param repository {Lambda} Injected Repository. A new repository will be created if not supplied
+     * @param options {Lambda.ClientConfiguration} Injected configuration if a Repository is supplied
      */
     constructor(logger: ILogger,
-        repository?: AWS.Lambda,
-        options?: AWS.Lambda.ClientConfiguration) {
+        repository?: Lambda.Lambda,
+        options?: Lambda.LambdaClientConfig) {
 
         super(logger);
-        this.Repository = repository || new AWS.Lambda(options);
+        options = this.ObjectOperations.IsNullOrEmpty(options) ? { region: 'us-east-1' } as Lambda.LambdaClientConfig : options!;
+        this.Repository = repository || new Lambda.Lambda(options);
     }
 
     /**
@@ -50,7 +52,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      */
     public async DisableDynamoEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration> {
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration> {
 
         return await this.UpdateEventSourceMappingAsync(functionName,
             false,
@@ -66,7 +68,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      */
     public async DisableKinesisEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration> {
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration> {
 
         return await this.UpdateEventSourceMappingAsync(functionName,
             false,
@@ -82,7 +84,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      */
     public async DisableSQSEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration> {
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration> {
 
         return await this.UpdateEventSourceMappingAsync(functionName,
             false,
@@ -98,7 +100,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      */
     public async EnableDynamoEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration> {
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration> {
 
         return await this.UpdateEventSourceMappingAsync(functionName,
             true,
@@ -114,7 +116,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      */
     public async EnableKinesisEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration> {
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration> {
 
         return await this.UpdateEventSourceMappingAsync(functionName,
             true,
@@ -130,7 +132,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      */
     public async EnableSQSEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration> {
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration> {
 
         return await this.UpdateEventSourceMappingAsync(functionName,
             true,
@@ -142,7 +144,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      * Get an Event Source Mapping
      * @param uuid {string} Uuid of Event Source Mapping
      */
-    public async GetEventSourceMappingAsync(uuid: string): Promise<AWS.Lambda.EventSourceMappingConfiguration> {
+    public async GetEventSourceMappingAsync(uuid: string): Promise<Lambda.EventSourceMappingConfiguration> {
 
         const action = `${LambdaHelper.name}.${this.GetEventSourceMappingAsync.name}`;
         this.LogHelper.LogInputs(action, { uuid });
@@ -151,13 +153,13 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(uuid)) { throw new Error(`[${action}]-Must supply uuid`); }
 
         // create params object
-        const params: AWS.Lambda.GetEventSourceMappingRequest = {
+        const params: Lambda.GetEventSourceMappingRequest = {
             UUID: uuid,
         };
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.getEventSourceMapping(params).promise();
+        const response = await this.Repository.getEventSourceMapping(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -169,7 +171,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      * @param eventSourceArn {string} Event Source ARN
      */
     public async ListEventSourceMappingsAsync(functionName: string,
-        eventSourceArn: string): Promise<AWS.Lambda.ListEventSourceMappingsResponse> {
+        eventSourceArn: string): Promise<Lambda.ListEventSourceMappingsResponse> {
 
         const action = `${LambdaHelper.name}.${this.ListEventSourceMappingsAsync.name}`;
         this.LogHelper.LogInputs(action, { functionName, eventSourceArn });
@@ -179,14 +181,14 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(eventSourceArn)) { throw new Error(`[${action}]-Must supply eventSourceArn`); }
 
         // create params object
-        const params: AWS.Lambda.ListEventSourceMappingsRequest = {
+        const params: Lambda.ListEventSourceMappingsRequest = {
             EventSourceArn: eventSourceArn,
             FunctionName: functionName,
         };
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.listEventSourceMappings(params).promise();
+        const response = await this.Repository.listEventSourceMappings(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -198,7 +200,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      * @param payload {T} Payload to pass to function
      */
     public async InvokeAsync<T>(functionName: string,
-        payload: T): Promise<AWS.Lambda.InvokeAsyncResponse> {
+        payload: T): Promise<Lambda.InvokeAsyncResponse> {
 
         const action = `${LambdaHelper.name}.${this.InvokeAsync.name}`;
         this.LogHelper.LogInputs(action, { functionName, payload });
@@ -206,15 +208,21 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
         // guard clauses
         if (this.ObjectOperations.IsNullOrWhitespace(functionName)) { throw new Error(`[${action}]-Must supply functionName`); }
 
+        const payloadString = JSON.stringify(payload);
+
+        const readable = new Readable();
+        readable.push(payloadString);
+        readable.push(null);
+
         // create params object
-        const params: AWS.Lambda.InvokeAsyncRequest = {
+        const params: Lambda.InvokeAsyncRequest = {
             FunctionName: functionName,
-            InvokeArgs: payload,
+            InvokeArgs: readable,
         };
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.invokeAsync(params).promise();
+        const response = await this.Repository.invokeAsync(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -226,7 +234,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      * @param payload {T} Payload to pass to function
      */
     public async InvokeSync<T>(functionName: string,
-        payload: T): Promise<AWS.Lambda.InvocationResponse> {
+        payload: T): Promise<Lambda.InvocationResponse> {
 
         const action = `${LambdaHelper.name}.${this.InvokeSync.name}`;
         this.LogHelper.LogInputs(action, { functionName, payload });
@@ -234,15 +242,19 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
         // guard clauses
         if (this.ObjectOperations.IsNullOrWhitespace(functionName)) { throw new Error(`[${action}]-Must supply functionName`); }
 
+        const payloadString = JSON.stringify(payload);
+
+        const array = this.ObjectOperations.ConvertStringToArrayBuffer(payloadString);
+
         // create params object
-        const params: AWS.Lambda.InvocationRequest = {
+        const params: Lambda.InvocationRequest = {
             FunctionName: functionName,
-            Payload: payload,
+            Payload: array,
         };
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.invoke(params).promise();
+        const response = await this.Repository.invoke(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -258,7 +270,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
     public async UpdateEventSourceMappingAsync(functionName: string,
         enabled: boolean,
         uuid: string,
-        batchSize: number): Promise<AWS.Lambda.EventSourceMappingConfiguration> {
+        batchSize: number): Promise<Lambda.EventSourceMappingConfiguration> {
 
         const action = `${LambdaHelper.name}.${this.UpdateEventSourceMappingAsync.name}`;
         this.LogHelper.LogInputs(action, { functionName, enabled, uuid, batchSize });
@@ -268,7 +280,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(uuid)) { throw new Error(`[${action}]-Must supply uuid`); }
 
         // create params object
-        const params: AWS.Lambda.UpdateEventSourceMappingRequest = {
+        const params: Lambda.UpdateEventSourceMappingRequest = {
             BatchSize: batchSize,
             Enabled: enabled,
             FunctionName: functionName,
@@ -277,7 +289,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.updateEventSourceMapping(params).promise();
+        const response = await this.Repository.updateEventSourceMapping(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;

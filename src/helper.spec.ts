@@ -5,11 +5,9 @@ import { TestingValues } from './test-values';
 
 const logger = new Logger(LogLevel.Off);
 const mockerResolves = new LambdaMock(false);
-const lambdaHelperMockResolves = new LambdaHelper(logger,
-    mockerResolves.Mock);
+const lambdaHelperMockResolves = new LambdaHelper(logger, mockerResolves.Mock);
 const mockerRejects = new LambdaMock(true);
-const lambdaHelperMockRejects = new LambdaHelper(logger,
-    mockerRejects.Mock);
+const lambdaHelperMockRejects = new LambdaHelper(logger, mockerRejects.Mock);
 const TestValues = new TestingValues();
 
 /**

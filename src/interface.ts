@@ -1,4 +1,4 @@
-import * as AWS from 'aws-sdk';
+import * as Lambda from '@aws-sdk/client-lambda';
 
 /**
  * Lambda Helper
@@ -8,7 +8,7 @@ export interface ILambdaHelper {
     /**
      * AWS Repository for Lambda
      */
-    Repository: AWS.Lambda;
+    Repository: Lambda.Lambda;
 
     /**
      * Disable event source mapping for a Dynamo stream
@@ -18,7 +18,7 @@ export interface ILambdaHelper {
      */
     DisableDynamoEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration>;
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration>;
 
     /**
      * Disable event source mapping for a Kinesis stream
@@ -28,7 +28,7 @@ export interface ILambdaHelper {
      */
     DisableKinesisEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration>;
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration>;
 
     /**
      * Disable event source mapping for a SQS queue
@@ -38,7 +38,7 @@ export interface ILambdaHelper {
      */
     DisableSQSEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration>;
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration>;
 
     /**
      * Enable event source mapping for a Dynamo stream
@@ -48,7 +48,7 @@ export interface ILambdaHelper {
      */
     EnableDynamoEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration>;
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration>;
 
     /**
      * Enable event source mapping for a Kinesis stream
@@ -58,7 +58,7 @@ export interface ILambdaHelper {
      */
     EnableKinesisEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration>;
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration>;
 
     /**
      * Enable event source mapping for a SQS queue
@@ -68,13 +68,13 @@ export interface ILambdaHelper {
      */
     EnableSQSEventSourceMappingAsync(functionName: string,
         uuid: string,
-        batchSize?: number): Promise<AWS.Lambda.EventSourceMappingConfiguration>;
+        batchSize?: number): Promise<Lambda.EventSourceMappingConfiguration>;
 
     /**
      * Get an Event Source Mapping
      * @param uuid {string} Uuid of Event Source Mapping
      */
-    GetEventSourceMappingAsync(uuid: string): Promise<AWS.Lambda.EventSourceMappingConfiguration>;
+    GetEventSourceMappingAsync(uuid: string): Promise<Lambda.EventSourceMappingConfiguration>;
 
     /**
      * List Event Source Mappings
@@ -82,7 +82,7 @@ export interface ILambdaHelper {
      * @param eventSourceArn {string} Event Source ARN
      */
     ListEventSourceMappingsAsync(functionName: string,
-        eventSourceArn: string): Promise<AWS.Lambda.ListEventSourceMappingsResponse>;
+        eventSourceArn: string): Promise<Lambda.ListEventSourceMappingsResponse>;
 
     /**
      * Invoke lambda async
@@ -90,7 +90,7 @@ export interface ILambdaHelper {
      * @param payload {T} Payload to pass to function
      */
     InvokeAsync<T>(functionName: string,
-        payload: T): Promise<AWS.Lambda.InvokeAsyncResponse>;
+        payload: T): Promise<Lambda.InvokeAsyncResponse>;
 
     /**
      * Invoke lambda sync
@@ -98,7 +98,7 @@ export interface ILambdaHelper {
      * @param payload {T} Payload to pass to function
      */
     InvokeSync<T>(functionName: string,
-        payload: T): Promise<AWS.Lambda.InvocationResponse>;
+        payload: T): Promise<Lambda.InvocationResponse>;
 
     /**
      * Update an event source mapping
@@ -110,5 +110,5 @@ export interface ILambdaHelper {
     UpdateEventSourceMappingAsync(functionName: string,
         enabled: boolean,
         uuid: string,
-        batchSize: number): Promise<AWS.Lambda.EventSourceMappingConfiguration>;
+        batchSize: number): Promise<Lambda.EventSourceMappingConfiguration>;
 }
