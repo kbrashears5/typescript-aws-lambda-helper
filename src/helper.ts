@@ -12,7 +12,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
     /**
      * AWS Repository for Lambda
      */
-    public Repository: Lambda.Lambda;
+    private Repository: Lambda.Lambda;
 
     /**
      * Default batch size for Dynamo Event Source Mapping
@@ -33,7 +33,7 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
      * Initializes new instance of LambdaHelper
      * @param logger {ILogger} Injected logger
      * @param repository {Lambda} Injected Repository. A new repository will be created if not supplied
-     * @param options {Lambda.ClientConfiguration} Injected configuration if a Repository is supplied
+     * @param options {Lambda.LambdaClientConfig} Injected configuration if a Repository is supplied
      */
     constructor(logger: ILogger,
         repository?: Lambda.Lambda,

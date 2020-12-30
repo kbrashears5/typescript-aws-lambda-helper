@@ -4,12 +4,6 @@ import * as Lambda from '@aws-sdk/client-lambda';
  * Lambda Helper
  */
 export interface ILambdaHelper {
-
-    /**
-     * AWS Repository for Lambda
-     */
-    Repository: Lambda.Lambda;
-
     /**
      * Disable event source mapping for a Dynamo stream
      * @param functionName {string} Function name to update. Best to use the full ARN
