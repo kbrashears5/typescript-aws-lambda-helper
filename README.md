@@ -46,3 +46,6 @@ const helper = new LambdaHelper(logger,
 const response = await helper.InvokeAsync('lambdaName',
     'payload');
 ```
+
+## Notes
+If no options are supplied, will default to `us-east-1` as the region
