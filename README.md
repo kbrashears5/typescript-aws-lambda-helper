@@ -10,42 +10,45 @@
 
 [![NPM Version](https://img.shields.io/npm/v/typescript-aws-lambda-helper)](https://img.shields.io/npm/v/typescript-aws-lambda-helper)
 [![Downloads](https://img.shields.io/npm/dt/typescript-aws-lambda-helper)](https://img.shields.io/npm/dt/typescript-aws-lambda-helper)
+
 </div>
 
 ## Install
+
 ```
 npm install typescript-aws-lambda-helper@latest
 ```
 
 ## Usage
+
 ### Default - running in Lambda in your own account
+
 ```typescript
 const logger = new Logger(LogLevel.Trace);
 
 const helper = new LambdaHelper(logger);
 
-const response = await helper.InvokeAsync('lambdaName',
-    'payload');
+const response = await helper.InvokeAsync('lambdaName', 'payload');
 ```
 
 ### Running in separate account or not in Lambda
+
 ```typescript
 const logger = new Logger(LogLevel.Trace);
 
 const options: AWS.Lambda.ClientConfiguration = {
-    accessKeyId: '{access_key}',
-    secretAccessKey: '{secret_key}',
-    region: 'us-east-1',
+  accessKeyId: '{access_key}',
+  secretAccessKey: '{secret_key}',
+  region: 'us-east-1',
 };
 
 const repository = new AWS.Lambda(options);
 
-const helper = new LambdaHelper(logger,
-    repository);
+const helper = new LambdaHelper(logger, repository);
 
-const response = await helper.InvokeAsync('lambdaName',
-    'payload');
+const response = await helper.InvokeAsync('lambdaName', 'payload');
 ```
 
 ## Notes
+
 If no options are supplied, will default to `us-east-1` as the region
