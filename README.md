@@ -34,15 +34,17 @@ const response = await helper.InvokeAsync('lambdaName', 'payload');
 ### Running in separate account or not in Lambda
 
 ```typescript
+import * as Lambda from '@aws-sdk/client-lambda';
+
 const logger = new Logger(LogLevel.Trace);
 
-const options: AWS.Lambda.ClientConfiguration = {
+const options: Lambda.LambdaClientConfig = {
   accessKeyId: '{access_key}',
   secretAccessKey: '{secret_key}',
   region: 'us-east-1',
 };
 
-const repository = new AWS.Lambda(options);
+const repository = new Lambda.Lambda(options);
 
 const helper = new LambdaHelper(logger, repository);
 
