@@ -3,10 +3,12 @@ import { Logger, LogLevel } from 'typescript-ilogger';
 import { TestingValues } from './test-values';
 import * as Lambda from '@aws-sdk/client-lambda';
 
-const eventSourceMappingConfigurationResponse: Lambda.EventSourceMappingConfiguration = {};
+const eventSourceMappingConfigurationResponse: Lambda.EventSourceMappingConfiguration =
+  {};
 const invocationResponseResponse: Lambda.InvocationResponse = {};
 const invokeAsyncResponseResponse: Lambda.InvokeAsyncResponse = {};
-const listEventSourceMappingsResponseResponse: Lambda.ListEventSourceMappingsResponse = {};
+const listEventSourceMappingsResponseResponse: Lambda.ListEventSourceMappingsResponse =
+  {};
 
 const getEventSourceMapping = jest.fn().mockImplementation(() => {
   return Promise.resolve<Lambda.EventSourceMappingConfiguration>(

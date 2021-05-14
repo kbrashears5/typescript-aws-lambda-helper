@@ -278,9 +278,8 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
 
     const payloadString = JSON.stringify(payload);
 
-    const array = this.ObjectOperations.ConvertStringToArrayBuffer(
-      payloadString,
-    );
+    const array =
+      this.ObjectOperations.ConvertStringToArrayBuffer(payloadString);
 
     // create params object
     const params: Lambda.InvocationRequest = {
