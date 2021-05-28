@@ -4,9 +4,7 @@
     
 <b>Typescript helper functions for AWS Lambda service</b>
     
-[![Build Status](https://dev.azure.com/kbrashears5/github/_apis/build/status/kbrashears5.typescript-aws-lambda-helper?branchName=master)](https://dev.azure.com/kbrashears5/github/_build/latest?definitionId=16&branchName=master)
-[![Tests](https://img.shields.io/azure-devops/tests/kbrashears5/github/16)](https://img.shields.io/azure-devops/tests/kbrashears5/github/16)
-[![Code Coverage](https://img.shields.io/azure-devops/coverage/kbrashears5/github/16)](https://img.shields.io/azure-devops/coverage/kbrashears5/github/16)
+[![CI/CD](https://github.com/kbrashears5/typescript-aws-lambda-helper/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/kbrashears5/typescript-aws-lambda-helper/actions/workflows/ci-cd.yml)
 
 [![NPM Version](https://img.shields.io/npm/v/typescript-aws-lambda-helper)](https://img.shields.io/npm/v/typescript-aws-lambda-helper)
 [![Downloads](https://img.shields.io/npm/dt/typescript-aws-lambda-helper)](https://img.shields.io/npm/dt/typescript-aws-lambda-helper)
@@ -54,3 +52,13 @@ const response = await helper.InvokeAsync('lambdaName', 'payload');
 ## Notes
 
 If no options are supplied, will default to `us-east-1` as the region
+
+## Development
+
+Clone the latest and run
+
+```npm
+npm run prep
+```
+
+to install packages and prep the git hooks
