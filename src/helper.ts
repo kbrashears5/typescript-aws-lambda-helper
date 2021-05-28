@@ -16,17 +16,17 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
   /**
    * Default batch size for Dynamo Event Source Mapping
    */
-  private DefaultDynamoBatchSize: number = 100;
+  private DefaultDynamoBatchSize = 100;
 
   /**
    * Default batch size for Kinesis Event Source Mapping
    */
-  private DefaultKinesisBatchSize: number = 100;
+  private DefaultKinesisBatchSize = 100;
 
   /**
    * Default batch size for SQS Event Source Mapping
    */
-  private DefaultSQSBatchSize: number = 10;
+  private DefaultSQSBatchSize = 10;
 
   /**
    * Initializes new instance of LambdaHelper
@@ -40,9 +40,11 @@ export class LambdaHelper extends BaseClass implements ILambdaHelper {
     options?: Lambda.LambdaClientConfig,
   ) {
     super(logger);
+    // eslint-disable-next-line no-param-reassign
     options = this.ObjectOperations.IsNullOrEmpty(options)
       ? ({ region: 'us-east-1' } as Lambda.LambdaClientConfig)
-      : options!;
+      : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        options!;
     this.Repository = repository || new Lambda.Lambda(options);
   }
 

@@ -43,7 +43,7 @@ const TestValues = new TestingValues();
  * Test the DisableDynamoEventSourceMappingAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableDynamoEventSourceMappingAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.DisableDynamoEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -56,7 +56,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableDynamoEventSourceMappin
  * Test the DisableKinesisEventSourceMappingAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableKinesisEventSourceMappingAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.DisableKinesisEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -69,7 +69,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableKinesisEventSourceMappi
  * Test the DisableSQSEventSourceMappingAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableSQSEventSourceMappingAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.DisableSQSEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -82,7 +82,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableSQSEventSourceMappingAs
  * Test the EnableDynamoEventSourceMappingAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableDynamoEventSourceMappingAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.EnableDynamoEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -95,7 +95,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableDynamoEventSourceMapping
  * Test the EnableKinesisEventSourceMappingAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableKinesisEventSourceMappingAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.EnableKinesisEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -108,7 +108,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableKinesisEventSourceMappin
  * Test the EnableSQSEventSourceMappingAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableSQSEventSourceMappingAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.EnableSQSEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -121,7 +121,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableSQSEventSourceMappingAsy
  * Test the GetEventSourceMappingAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.GetEventSourceMappingAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.GetEventSourceMappingAsync(TestValues.Uuid);
     return expect(actual).rejects.toThrow(TestValues.AWSError);
   });
@@ -131,7 +131,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.GetEventSourceMappingAsync.nam
  * Test the ListEventSourceMappingsAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.ListEventSourceMappingsAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.ListEventSourceMappingsAsync(
       TestValues.Name,
       TestValues.Arn,
@@ -144,7 +144,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.ListEventSourceMappingsAsync.n
  * Test the InvokeSync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.InvokeSync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.InvokeSync<string>(
       TestValues.Name,
       TestValues.Body,
@@ -157,7 +157,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.InvokeSync.name}`, () => {
  * Test the InvokeAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.InvokeAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.InvokeAsync<string>(
       TestValues.Name,
       TestValues.Body,
@@ -170,7 +170,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.InvokeAsync.name}`, () => {
  * Test the UpdateEventSourceMappingAsync method
  */
 describe(`${LambdaHelper.name}.${lambdaHelperMock.UpdateEventSourceMappingAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = lambdaHelperMock.UpdateEventSourceMappingAsync(
       TestValues.Name,
       TestValues.BooleanValue,

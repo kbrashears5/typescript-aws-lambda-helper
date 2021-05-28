@@ -78,7 +78,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableDynamoEventSourceMappin
       `[${action}]-${TestValues.MustSupply} uuid`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.DisableDynamoEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -114,7 +114,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableKinesisEventSourceMappi
       `[${action}]-${TestValues.MustSupply} uuid`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.DisableKinesisEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -150,7 +150,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.DisableSQSEventSourceMappingAs
       `[${action}]-${TestValues.MustSupply} uuid`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.DisableSQSEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -186,7 +186,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableDynamoEventSourceMapping
       `[${action}]-${TestValues.MustSupply} uuid`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.EnableDynamoEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -222,7 +222,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableKinesisEventSourceMappin
       `[${action}]-${TestValues.MustSupply} uuid`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.EnableKinesisEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -258,7 +258,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.EnableSQSEventSourceMappingAsy
       `[${action}]-${TestValues.MustSupply} uuid`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.EnableSQSEventSourceMappingAsync(
       TestValues.Name,
       TestValues.Uuid,
@@ -284,7 +284,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.GetEventSourceMappingAsync.nam
       `[${action}]-${TestValues.MustSupply} uuid`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.GetEventSourceMappingAsync(TestValues.Uuid);
     return expect(actual).resolves.toEqual(
       eventSourceMappingConfigurationResponse,
@@ -317,7 +317,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.ListEventSourceMappingsAsync.n
       `[${action}]-${TestValues.MustSupply} eventSourceArn`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.ListEventSourceMappingsAsync(
       TestValues.Name,
       TestValues.Arn,
@@ -344,7 +344,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.InvokeSync.name}`, () => {
       `[${action}]-${TestValues.MustSupply} functionName`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.InvokeSync<string>(
       TestValues.Name,
       TestValues.Body,
@@ -369,7 +369,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.InvokeAsync.name}`, () => {
       `[${action}]-${TestValues.MustSupply} functionName`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.InvokeAsync<string>(
       TestValues.Name,
       TestValues.Body,
@@ -407,7 +407,7 @@ describe(`${LambdaHelper.name}.${lambdaHelperMock.UpdateEventSourceMappingAsync.
       `[${action}]-${TestValues.MustSupply} uuid`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = lambdaHelperMock.UpdateEventSourceMappingAsync(
       TestValues.Name,
       TestValues.BooleanValue,

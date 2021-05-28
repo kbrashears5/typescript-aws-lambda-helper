@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["cobertura", "ilogger", "postpublish", "prebuild"]
+  "cSpell.words": [
+    "cobertura",
+    "eqeqeq",
+    "ilogger",
+    "postpublish",
+    "prebuild"
+  ]
 }

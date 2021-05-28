@@ -3,24 +3,24 @@
  */
 export class TestingValues {
   // descriptions
-  public AWSError: string = 'AWS Error';
-  public InvalidTest: string = 'returns error from AWS';
-  public MustSupply: string = 'Must supply';
-  public ThrowsOnEmpty: string = 'throws on empty';
-  public ValidTest: string = 'returns valid response from AWS';
+  public AWSError = 'AWS Error';
+  public InvalidTest = 'returns error from AWS';
+  public MustSupply = 'Must supply';
+  public ThrowsOnEmpty = 'throws on empty';
+  public ValidTest = 'returns valid response from AWS';
 
   // empty values
-  public EmptyString: string = '';
+  public EmptyString = '';
 
   // numbers
-  public NumberValue: number = 1;
+  public NumberValue = 1;
 
   // booleans
-  public BooleanValue: boolean = true;
+  public BooleanValue = true;
 
   // strings
-  public Arn: string = 'arn';
-  public Body: string = 'body';
-  public Name: string = 'name';
-  public Uuid: string = 'uuid';
+  public Arn = 'arn';
+  public Body = 'body';
+  public Name = 'name';
+  public Uuid = 'uuid';
 }

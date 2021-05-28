@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as Lambda from '@aws-sdk/client-lambda';
 
 /**
