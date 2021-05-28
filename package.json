@@ -1,6 +1,6 @@
 {
   "name": "typescript-aws-lambda-helper",
-  "version": "2.0.38",
+  "version": "2.0.40",
   "description": "Typescript AWS Lambda Helper",
   "repository": {
     "type": "git",
