@@ -3,6 +3,7 @@
     "Autobuild",
     "Parens",
     "cobertura",
+    "codecov",
     "codeql",
     "eqeqeq",
     "ilogger",

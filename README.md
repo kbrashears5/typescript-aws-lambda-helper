@@ -5,7 +5,7 @@
 <b>Typescript helper functions for AWS Lambda service</b>
     
 [![CI/CD](https://github.com/kbrashears5/typescript-aws-lambda-helper/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/kbrashears5/typescript-aws-lambda-helper/actions/workflows/ci-cd.yml)
-
+[![codecov](https://codecov.io/gh/kbrashears5/typescript-aws-lambda-helper/branch/master/graph/badge.svg?token=OYCTKMEXYN)](https://codecov.io/gh/kbrashears5/typescript-aws-lambda-helper)
 [![NPM Version](https://img.shields.io/npm/v/typescript-aws-lambda-helper)](https://img.shields.io/npm/v/typescript-aws-lambda-helper)
 [![Downloads](https://img.shields.io/npm/dt/typescript-aws-lambda-helper)](https://img.shields.io/npm/dt/typescript-aws-lambda-helper)
 
