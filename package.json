@@ -21,7 +21,7 @@
   "main": "lib/index.js",
   "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-lambda": "~3.100.0",
+    "@aws-sdk/client-lambda": "~3.344.0",
     "typescript-helper-functions": "~1.0.158",
     "typescript-ilogger": "~1.0.113"
   },
